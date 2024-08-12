@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.OverallHover:hover{
+    @apply bg-[blueviolet] text-white rounded-md shadow-md cursor-pointer
+
+}

@@ -2,7 +2,7 @@ import React from 'react'
 
 const FinanceContainer = () => {
   return (
-    <div>FinanceContainer</div>
+    <div className='h-[600px]'>FinanceContainer</div>
   )
 }
 

@@ -6,10 +6,10 @@ import Sidebar from './Sidebar'
 const MainPage = () => {
   return (
 <div className='grid grid-cols-12 '>
- <div className='col-span-2 bg-[antiquewhite] max-h-screen'>
+ <div className='col-span-2 bg-[white] '>
   <Sidebar/>
  </div>
-    <div className='col-span-10 bg-[blueviolet] max-h-screen'>
+    <div className='col-span-10'>
     <NavBar/>
     <FinanceContainer/>
     </div>
