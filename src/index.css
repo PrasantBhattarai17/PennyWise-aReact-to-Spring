@@ -7,3 +7,7 @@
     @apply bg-[blueviolet] text-white rounded-md shadow-md cursor-pointer
 
 }
+.OverallActive:focus{
+    @apply bg-[blueviolet] text-white rounded-md shadow-md cursor-pointer
+
+}
