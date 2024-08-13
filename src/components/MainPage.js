@@ -10,6 +10,7 @@ import Transactions from "../components/Menu/Transactions"
 import Billings from "../components/Menu/Billings"
 import Settings from './general/settings'
 import Help from './general/Help'
+import LoginPage from './LoginPage'
 
 const MainPage = () => {
   return (
@@ -30,6 +31,10 @@ export const appRouter=createBrowserRouter(
     path:'/',
     element:<MainPage/>,
     children:[
+      {
+        path:"/",
+        element:<FinanceContainer/>
+      },
       {
         path:"/overview",
         element:<FinanceContainer/>
@@ -68,6 +73,10 @@ export const appRouter=createBrowserRouter(
       },
       
     ]
+  },
+  {
+    path: '/login',
+    element: <LoginPage/>
   }
   ]
 );

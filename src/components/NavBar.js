@@ -1,8 +1,12 @@
 import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 
 const NavBar = () => {
+  const [focus,setFocus]=useState(false);
+  const isFocus=()=>{
+   setFocus(true);
+  }
   return (
     <div className="grid grid-cols-10 h-20 border-b-2 shadow-sm ">
       <div className="col-span-2 flex items-center mx-6">
@@ -11,11 +15,13 @@ const NavBar = () => {
       <div className="col-span-1 "></div>
       <div className="col-span-7 flex">
         <div className="  w-2/3 flex items-center justify-center  ">
-          <input
-            className="border-y-2 border-l-2 w-[80%] h-12  px-4 rounded-l-3xl border-[blueviolet] focus:border-[blueviolet] focus:outline-none   "
+          <input onFocus={()=>
+          isFocus()
+        }
+            className={`border-y-2 border-l-2 w-[80%] h-12  px-4 rounded-l-3xl  focus:outline-none ${focus?"border-[blueviolet]":"border-[#cdc7c7]"}`}
             placeholder="Search"
           />
-          <button className="border-r-2 border-y-2 h-12 rounded-r-3xl border-[blueviolet]">
+          <button className={`border-r-2 border-y-2 h-12 rounded-r-3xl  ${focus?"border-[blueviolet]":"border-[#cdc7c7]"} `}>
             <FontAwesomeIcon
               className="text-2xl px-3 self-center active:text-[blueviolet]"
               color="gray"

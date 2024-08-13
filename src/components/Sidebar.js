@@ -13,23 +13,36 @@ import {
   faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { ToggleView } from "../Store/transactionSlice";
 
 const Sidebar = () => {
+  const view=useSelector((store)=>store.view.isView);
+  const dispatch=useDispatch();
     const navigate=useNavigate();
   const [selectedItem, setSelectedItem] = useState("overview");
   const handleClick = (item) => {
+    if(item==="overview")
+      dispatch(ToggleView());
     setSelectedItem(item);
-    if(item!="logout")
+    if(item!=="logout")
     navigate("/"+item);
-
   };
+
+  useEffect(() => {
+    if (view) {
+      setSelectedItem("transactions");
+      navigate("/transactions");
+    }
+  }, [view, navigate]);
   const getClassForItem = (item) => {
-    return selectedItem == item
+    return selectedItem === item
       ? "cursor-pointer bg-[blueviolet] rounded-md text-white"
       : "OverallHover";
   };
   return (
-    <div className="flex flex-col space-y-32 shadow-md ">
+    <div className="flex flex-col space-y-14 shadow-md h-[700px] top-0 left-0 fixed w-[16.66%] ">
       <div>
         <div className=" flex h-20  mb-6">
           <img
