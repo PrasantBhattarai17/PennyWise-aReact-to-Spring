@@ -2,6 +2,14 @@ import React from 'react'
 import NavBar from './NavBar'
 import FinanceContainer from './FinanceContainer'
 import Sidebar from './Sidebar'
+import { createBrowserRouter, Outlet } from 'react-router-dom'
+import Income from "../components/Menu/Income"
+import Savings from "../components/Menu/Savings"
+import Expenses from "../components/Menu/Expenses"
+import Transactions from "../components/Menu/Transactions"
+import Billings from "../components/Menu/Billings"
+import Settings from './general/settings'
+import Help from './general/Help'
 
 const MainPage = () => {
   return (
@@ -11,10 +19,57 @@ const MainPage = () => {
  </div>
     <div className='col-span-10'>
     <NavBar/>
-    <FinanceContainer/>
+   <Outlet/>
     </div>
 </div>
   )
 }
+export const appRouter=createBrowserRouter(
+  [
+  {
+    path:'/',
+    element:<MainPage/>,
+    children:[
+      {
+        path:"/overview",
+        element:<FinanceContainer/>
+      },
+      {
+        path:"/income",
+        element:<Income/>
+      },
+      {
+        path:"/expenses",
+        element:<Expenses/>
+      },
+      {
+        path:"/savings",
+        element:<Savings/>
+      },
+      {
+        path:"/transactions",
+        element:<Transactions/>
+      },
+      {
+        path:"/billings",
+        element:<Billings/>
+      },
+      {
+        path:"/billings",
+        element:<Billings/>
+      },
+      {
+        path:"/settings",
+        element:<Settings/>
+      },
+      {
+        path:"/help",
+        element:<Help/>
+      },
+      
+    ]
+  }
+  ]
+);
 
 export default MainPage

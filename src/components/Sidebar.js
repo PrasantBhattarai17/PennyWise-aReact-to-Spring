@@ -12,11 +12,16 @@ import {
   faQuestion,
   faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router";
 
 const Sidebar = () => {
+    const navigate=useNavigate();
   const [selectedItem, setSelectedItem] = useState("overview");
   const handleClick = (item) => {
     setSelectedItem(item);
+    if(item!="logout")
+    navigate("/"+item);
+
   };
   const getClassForItem = (item) => {
     return selectedItem == item
@@ -26,7 +31,7 @@ const Sidebar = () => {
   return (
     <div className="flex flex-col space-y-32 shadow-md ">
       <div>
-        <div className=" flex h-20 border-b-2 mb-6">
+        <div className=" flex h-20  mb-6">
           <img
             className=" h-full w-full cursor-pointer"
             src={Logo}
