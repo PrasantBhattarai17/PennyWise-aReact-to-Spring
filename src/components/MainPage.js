@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from './NavBar'
 import FinanceContainer from './FinanceContainer'
 import Sidebar from './Sidebar'
-import { createBrowserRouter, Outlet } from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom'
 import Income from "../components/Menu/Income"
 import Savings from "../components/Menu/Savings"
 import Expenses from "../components/Menu/Expenses"
@@ -27,14 +27,18 @@ const MainPage = () => {
 }
 export const appRouter=createBrowserRouter(
   [
+    {
+      path: '/login',
+      element: <LoginPage/>
+    },
+  {
+    path:'/',
+    element:<LoginPage/>
+  },
   {
     path:'/',
     element:<MainPage/>,
     children:[
-      {
-        path:"/",
-        element:<FinanceContainer/>
-      },
       {
         path:"/overview",
         element:<FinanceContainer/>
@@ -60,10 +64,6 @@ export const appRouter=createBrowserRouter(
         element:<Billings/>
       },
       {
-        path:"/billings",
-        element:<Billings/>
-      },
-      {
         path:"/settings",
         element:<Settings/>
       },
@@ -73,11 +73,8 @@ export const appRouter=createBrowserRouter(
       },
       
     ]
-  },
-  {
-    path: '/login',
-    element: <LoginPage/>
   }
+  
   ]
 );
 
