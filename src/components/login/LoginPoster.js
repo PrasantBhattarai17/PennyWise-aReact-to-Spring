@@ -1,7 +1,11 @@
 import React from "react";
 import { LoginImage } from "../../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { ToggleLogin } from "../../Store/transactionSlice";
 
 const LoginPoster = () => {
+  const dispatch=useDispatch();
+  const isLog=useSelector((store)=>store.view.toggleLogin);
   return (
     <div className=" relative ">
       <div
@@ -16,17 +20,17 @@ const LoginPoster = () => {
           {" "}
           PennyWise
         </h1>
-        <h1 className="text-white text-4xl font-sans font-semibold mt-10 mr-10">
+        <h1 className=" text-4xl font-sans font-semibold mt-10 mr-10 text-gray-300">
           {" "}
           Save Smart,Live Wise!
         </h1>
         <span className="flex gap-2">
           <h1 className="text-white text-2xl font-sans font-bold mt-28">
             {" "}
-            Already have an account?
+            {isLog?"Already have an account?":"New here?"}  
           </h1>
-          <h1 className="text-2xl font-sans text-gray-400 cursor-pointer font-bold mt-28 hover:underline hover:text-white">
-            login
+          <h1 onClick={()=>dispatch(ToggleLogin())} className="text-2xl font-sans text-gray-300 cursor-pointer font-bold mt-28 hover:underline hover:text-white">
+            {isLog?"login":"sign up"}
           </h1>
         </span>
       </div>

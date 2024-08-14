@@ -73,7 +73,7 @@ const RecentTransactions = () => {
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">
-            <p className="text-md font-sans font-semibold text-gray-500 mx-5 cursor-pointer">
+            <p className="text-md font-sans font-semibold text-gray-500 hover:text-[blueviolet] mx-5 cursor-pointer">
               <FontAwesomeIcon icon={faTrash} />
             </p>
           </div>
