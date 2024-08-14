@@ -1,8 +1,11 @@
 import React from 'react'
+import RecentTransactions from "../RecentTransactions"
 
 const Transactions = () => {
   return (
-    <div>Transactions</div>
+    <div>
+      <RecentTransactions/>
+    </div>
   )
 }
 

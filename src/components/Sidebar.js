@@ -28,6 +28,8 @@ const Sidebar = () => {
     setSelectedItem(item);
     if(item!=="logout")
     navigate("/"+item);
+    if(item==='logout')
+      navigate("/")
   };
 
   useEffect(() => {
