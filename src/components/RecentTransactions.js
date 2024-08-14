@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { incomeData } from "../utils/constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import HeadTransactions from "../Helper/headTransactions";
 const RecentTransactions = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,31 +26,7 @@ const RecentTransactions = () => {
           View all
         </h3>
       </span>
-      <div className=" grid grid-cols-6  my-8 border-b-2 pb-4 border-gray-100">
-        <div className="col-span-1 w-full mx-5">
-          <p className="text-sm font-sans font-semibold text-gray-500">Date</p>
-        </div>
-        <div className="col-span-2 w-full mx-5">
-          <p className="text-sm font-sans font-semibold text-gray-500">
-            Description
-          </p>
-        </div>
-        <div className="col-span-1 w-full mx-5">
-          <p className="text-sm font-sans font-semibold text-gray-500">
-            Amount
-          </p>
-        </div>
-        <div className="col-span-1 w-full mx-5">
-          <p className="text-sm font-sans font-semibold text-gray-500">
-            Category
-          </p>
-        </div>
-        <div className="col-span-1 w-full mx-5">
-          <p className="text-sm font-sans font-semibold text-gray-500">
-            Action
-          </p>
-        </div>
-      </div>
+      <HeadTransactions/>
       {incomeData.map((item) => (
         <div className=" grid grid-cols-6  my-8 border-b-2 pb-4 border-gray-100 min-w-full ">
           <div className="col-span-1 w-full mx-5">

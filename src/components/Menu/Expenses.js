@@ -8,7 +8,6 @@ const Expenses = () => {
     <div>
       <MoneyCard/>
       <InputIncomes/>
-      <RecentTransactions/>
     </div>
   )
 }

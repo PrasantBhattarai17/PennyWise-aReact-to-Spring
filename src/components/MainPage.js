@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "./NavBar";
 import FinanceContainer from "./FinanceContainer";
 import Sidebar from "./Sidebar";
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import { createBrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import Income from "../components/Menu/Income";
 import Savings from "../components/Menu/Savings";
 import Expenses from "../components/Menu/Expenses";
@@ -15,7 +15,7 @@ const MainPage = () => {
   return (
     <div className="grid grid-cols-12 ">
       <div className="col-span-2 bg-[white] ">
-        <Sidebar />
+      <Routes><Route path="/:id" element={<Sidebar />} /></Routes>
       </div>
       <div className="col-span-10">
         <NavBar />

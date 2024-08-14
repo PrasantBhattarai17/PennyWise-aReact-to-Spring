@@ -7,7 +7,6 @@ const Income = () => {
     <div>
       <MoneyCard/>
       <InputIncomes/>
-      <RecentTransactions/>
     </div>
   )
 }
