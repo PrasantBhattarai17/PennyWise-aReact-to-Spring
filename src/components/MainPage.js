@@ -11,6 +11,7 @@ import Billings from "../components/Menu/Billings";
 import Settings from "./general/settings";
 import Help from "./general/Help";
 import LoginPage from "./login/LoginPage";
+import OTPPage from "./login/OTPPage";
 const MainPage = () => {
   return (
     <div className="grid grid-cols-12 ">
@@ -33,6 +34,11 @@ export const appRouter = createBrowserRouter([
     path: "/",
     element: <LoginPage />,
   },
+  {
+    path: "/otppage",
+    element: <OTPPage />,
+  },
+
   {
     path: "/",
     element: <MainPage />,

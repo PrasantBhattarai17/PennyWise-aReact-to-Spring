@@ -9,7 +9,7 @@ const LoginPage = () => {
   return (
     <div className="grid grid-cols-12">
       <div className="col-span-6">
-        {switchLog?<SignUpForm/>:<LoginForm />}
+        {switchLog?<SignUpForm/> : <LoginForm />}
       </div>
       <div className="col-span-6">
         <LoginPoster />

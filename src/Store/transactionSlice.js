@@ -16,7 +16,7 @@ const transactionSlice=createSlice({
     },
     ToggleLogin:(state)=>{
         state.toggleLogin=!state.toggleLogin;
-    }
+    },
     }
 });
 export const {switchView,ToggleView,ToggleLogin} =transactionSlice.actions;

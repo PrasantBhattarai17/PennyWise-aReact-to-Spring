@@ -10,7 +10,7 @@ const SignUpForm = () => {
       </div>
     <div className="flex flex-col justify-center items-center bg-gray-100 rounded-md h-[600px]">
       <form
-        onSubmit={() => navigate("/overview")}
+        onSubmit={() => navigate("/otppage")}
         className="flex flex-col items-center justify-center w-2/3 h-[550px] gap-2  rounded-xl shadow-xl border-2 "
       >
       <h1 className="mr-24 mb-5 font-sans font-semibold text-2xl">
