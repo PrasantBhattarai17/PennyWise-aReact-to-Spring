@@ -20,7 +20,7 @@ const LoginForm = () => {
     </h1>
       <input
         type="text"
-        placeholder="Enter Email"
+        placeholder="Enter Username"
         className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm  focus:border-[blueviolet] focus:outline-none"
       />
       <p></p>

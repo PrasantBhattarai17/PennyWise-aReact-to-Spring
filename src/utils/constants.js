@@ -81,3 +81,19 @@ export const incomeData = [
     action: "Received",
   },
 ];
+
+
+ export const income = {
+  Salary: 50000,
+  Investment: 15000,
+  RealEstates: 30000,
+  Others: 8000
+};
+
+export const expenses = {
+  Grocery: 5000,
+  Bills: 3000,
+  Entertainment: 2000,
+  Others: 1500
+};
+

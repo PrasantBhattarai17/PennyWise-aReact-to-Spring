@@ -27,10 +27,10 @@ const LoginPoster = () => {
         <span className="flex gap-2">
           <h1 className="text-white text-2xl font-sans font-bold mt-28">
             {" "}
-            {isLog?"Already have an account?":"New here?"}  
+            {isLog?"New here?":"Already have an account?"}  
           </h1>
           <h1 onClick={()=>dispatch(ToggleLogin())} className="text-2xl font-sans text-gray-300 cursor-pointer font-bold mt-28 hover:underline hover:text-white">
-            {isLog?"login":"sign up"}
+            {isLog?"sign up":"login"}
           </h1>
         </span>
       </div>
