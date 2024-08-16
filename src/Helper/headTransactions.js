@@ -21,7 +21,7 @@ const HeadTransactions = () => {
             Category
           </p>
         </div>
-        <div className="col-span-1 w-full mx-5">
+        <div className="col-span-1 w-full  flex justify-center">
           <p className="text-sm font-sans font-semibold text-gray-500">
             Action
           </p>

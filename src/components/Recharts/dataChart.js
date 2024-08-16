@@ -14,10 +14,10 @@ const DataChart = () => {
 
   return (
     <div className="w-5/6 m-5 bg-white flex flex-col border-2 h-[400px] rounded-lg shadow-lg gap-2">
-      <h1 className="text-xl font-semibold mx-4 my-5 text-center">
+      <h1 className="text-xl font-bold mx-4 my-3 text-center">
         {isData ? "Income Categories" : "Expense Categories"}
       </h1>
-      <hr />
+      <hr className="border-2 border-[blueviolet]" />
       {Object.entries(data).map(([key, value]) => (
         <span
           key={key}

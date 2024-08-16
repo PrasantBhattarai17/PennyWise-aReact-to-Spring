@@ -91,7 +91,7 @@ export const incomeData = [
 };
 
 export const expenses = {
-  Grocery: 5000,
+  Groceries: 5000,
   Bills: 3000,
   Entertainment: 2000,
   Others: 1500
