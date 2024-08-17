@@ -2,18 +2,41 @@ import React, { useState } from 'react';
 import LoginPoster from './LoginPoster';
 import BrandLogo from './BrandLogo';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ToggleLogin } from '../../Store/transactionSlice';
 
 const OTPPage = () => {
     const [isOTP, setIsOTP] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const username=useSelector((store)=>store.login.username);
+
+    const sendOTPToDatabase = async (otp) => {
+        try {
+            const response = await fetch('/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ otp: otp, username :username }),
+            });
+
+            if (response.ok) {
+                const data = await response.text();
+                console.log('OTP saved successfully:', data);
+                dispatch(ToggleLogin());
+                navigate('/login');
+            } else {
+                console.error('Failed to save OTP:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error saving OTP:', error);
+        }
+    };
 
     const handleClick = () => {
         if (isOTP) {
-            dispatch(ToggleLogin());
-            navigate('/login');
+            sendOTPToDatabase(isOTP);
         }
     };
 

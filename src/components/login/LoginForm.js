@@ -1,41 +1,118 @@
-import React from 'react'
-import BrandLogo from './BrandLogo'
-import { useNavigate } from 'react-router'
-
+import React, { useState } from 'react';
+import BrandLogo from './BrandLogo';
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { loginSchema } from '../../Helper/UserValidation';
+import { setAuthToken } from "../../Store/loginslice";
 
 const LoginForm = () => {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // State to handle form inputs
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setApiError('');
+
+    try {
+      await loginSchema.validate(formData, { abortEarly: false });
+      // API call to login
+      const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error! Status: ${response.status}. Response: ${errorText}`);
+      }
+
+      const data = await response.text(); 
+      const token = data;
+
+      dispatch(setAuthToken(token));
+
+      navigate('/overview');
+    } catch (err) {
+      setLoading(false);
+      if (err.name === 'ValidationError') {
+        const validationErrors = {};
+        err.inner.forEach((error) => {
+          validationErrors[error.path] = error.message;
+        });
+        setErrors(validationErrors);
+      } else {
+        setApiError(err.message);
+      }
+    }
+  };
+
   return (
     <>
-    <div className="h-[100px] bg-gray-100">
-    <BrandLogo/>
-    </div>
-  <div className="flex flex-col justify-center items-center bg-gray-100 rounded-md h-[600px]">
-    <form
-      onSubmit={() => navigate("/overview")}
-      className="flex flex-col items-center justify-center w-2/3 h-[550px] gap-2  rounded-xl shadow-xl border-2 "
-    >
-    <h1 className=" mb-5 font-sans font-semibold text-2xl">
-      Welcome Back! Login to your account
-    </h1>
-      <input
-        type="text"
-        placeholder="Enter Username"
-        className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm  focus:border-[blueviolet] focus:outline-none"
-      />
-      <p></p>
-      <input
-        placeholder="Enter Password"
-        type="password"
-        className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm  focus:border-[blueviolet] focus:outline-none"
-      />
-      <p></p>
-      <button   className="border-2  mt-5 p-2 w-1/2 text-2xl font-bold font-sans bg-[blueviolet] text-white rounded-lg shadow-lg">Login </button>        
-      
-      </form>
-  </div>
-  </>
-  )
-}
+      <div className="h-[100px] bg-gray-100">
+        <BrandLogo />
+      </div>
+      <div className="flex flex-col justify-center items-center bg-gray-100 rounded-md h-[600px]">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center justify-center w-2/3 h-[550px] gap-2 rounded-xl shadow-xl border-2"
+        >
+          <h1 className="mb-5 font-sans font-semibold text-2xl">
+            Welcome Back! Login to your account
+          </h1>
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter Username"
+            className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
+            onChange={handleChange}
+            value={formData.username}
+          />
+          {errors.username && <p className="text-red-500 text-sm">{errors.username}</p>}
+          <input
+            placeholder="Enter Password"
+            type="password"
+            name="password"
+            className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
+            onChange={handleChange}
+            value={formData.password}
+          />
+          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+          <button
+            type="submit"
+            className={`border-2 mt-5 p-2 w-1/2 text-2xl font-bold font-sans ${
+              loading ? 'bg-gray-500' : 'bg-[blueviolet]'
+            } text-white rounded-lg shadow-lg`}
+            disabled={loading}
+          >
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
+          {apiError && <p className="text-red-500 mt-2">{apiError}</p>}
+        </form>
+      </div>
+    </>
+  );
+};
 
-export default LoginForm
+export default LoginForm;

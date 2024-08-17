@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { switchView } from "../Store/transactionSlice";
 import { useNavigate } from "react-router";
-import { incomeData } from "../utils/constants";
+import { financeData } from "../utils/constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import HeadTransactions from "../Helper/headTransactions";
@@ -27,20 +27,20 @@ const RecentTransactions = () => {
         </h3>
       </span>
       <HeadTransactions/>
-      {incomeData.map((item) => (
-        <div className=" grid grid-cols-6  my-8 border-b-2 pb-4 border-gray-100 min-w-full ">
+      {financeData.map((item,index) => (
+        <div key={index} className=" grid grid-cols-6  my-8 border-b-2 pb-4 border-gray-100 min-w-full ">
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
               {item?.date}
             </p>
           </div>
           <div className="col-span-2 w-full mx-5">
-            <p className="text-sm font-sans font-semibold text-gray-500">
+            <p className={`text-sm font-sans font-semibold t ${item?.isIncome?"text-green-600":"text-red-600"}`}>
               {item?.description}
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">
-            <p className="text-sm font-sans font-semibold text-gray-500">
+            <p className={`text-sm font-sans font-semibold t ${item?.isIncome?"text-green-600":"text-red-600"}`}>
               ${item?.amount}
             </p>
           </div>
