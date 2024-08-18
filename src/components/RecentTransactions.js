@@ -2,11 +2,18 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { switchView } from "../Store/transactionSlice";
 import { useNavigate } from "react-router";
-import { financeData } from "../utils/constants";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import HeadTransactions from "../Helper/headTransactions";
 const RecentTransactions = () => {
+  const financeData =[
+  {
+    date: "2024-08-10",
+    description: "Affiliate Marketing",
+    amount: 500.0,
+    category: "Others",
+    isIncome: true,
+  }];
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSwitch = () => {

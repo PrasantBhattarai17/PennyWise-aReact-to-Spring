@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import BrandLogo from './BrandLogo';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
 import { loginSchema } from '../../Helper/UserValidation';
-import { setAuthToken } from "../../Store/loginslice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // State to handle form inputs
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -34,7 +29,6 @@ const LoginForm = () => {
 
     try {
       await loginSchema.validate(formData, { abortEarly: false });
-      // API call to login
       const response = await fetch('/login', {
         method: 'POST',
         headers: {
@@ -50,9 +44,7 @@ const LoginForm = () => {
 
       const data = await response.text(); 
       const token = data;
-
-      dispatch(setAuthToken(token));
-
+    localStorage.setItem('token', token);
       navigate('/overview');
     } catch (err) {
       setLoading(false);

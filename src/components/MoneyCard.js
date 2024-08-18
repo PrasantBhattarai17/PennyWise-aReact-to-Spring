@@ -7,8 +7,16 @@ import {
   } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import React from "react";
+import UseIncomeCard from "../Hooks/useMoneyCard";
 
 const MoneyCard = () => {
+
+const token =localStorage.getItem('token')
+const { data} = UseIncomeCard(token);
+console.log(data);
+const income=data?.total || 0.00;
+
+
   return (
     <div className="h-[250px] bg-gray-100">
     <div>
@@ -20,7 +28,7 @@ const MoneyCard = () => {
           <FontAwesomeIcon className="mx-1" icon={faDollar} /> Income
         </h3>
         <span className="flex mx-5 my-5 space-x-3">
-          <h1 className="text-5xl font-bold font-sans">$928.89</h1>
+          <h1 className="text-5xl font-bold font-sans">${income}</h1>
           <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>12.2%</p>
         </span>
         <span className="flex mx-6 space-x-1">

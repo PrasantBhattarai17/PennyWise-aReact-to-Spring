@@ -4,12 +4,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const IncomeSlice=createSlice({
     name:'income',
     initialState:{
-        incomes:[]
+        incomes:[],
     },
     reducers:{
         addUserIncome:(state,action)=>{
             state.incomes.push(action.payload);
-        }
+        },
     }
 });
 

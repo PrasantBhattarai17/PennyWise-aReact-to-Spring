@@ -1,46 +1,46 @@
 import React, { useState } from "react";
 import HeadTransactions from "./headTransactions";
 import { useDispatch, useSelector } from "react-redux";
-import { addUserIncome } from "../Store/IncomeSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { income } from "../utils/constants";
-import useAddIncome from "../Hooks/useAddIncome";
+import { addUserExpense } from "../Store/expenseSlice";
+import { expenses } from "../utils/constants";
 
-const InputIncomes = () => {
-  const [iname, setDescription] = useState("");
-  const [iamount, setAmount] = useState("");
-  const [icategory, setCategory] = useState("");
-  const incomeData=useSelector((store)=>store.income.incomes)
+const InputExpense = () => {
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+ 
   const dispatch = useDispatch();
+  const expense = useSelector((store) => store.expense.expenses);
 
-  const { addIncome, isLoading, error, success } = useAddIncome();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (iname !== "" && iamount !== "" && icategory !== "" && parseFloat(iamount) > 0) {
-      const incomeEntry = { iname, iamount: parseFloat(iamount), icategory};
-      console.log(incomeEntry)
-      addIncome(incomeEntry);
-      dispatch(addUserIncome(incomeEntry));
+    if (
+      description !== "" &&
+      amount !== "" &&
+      category !== "" 
+    ) {
+      dispatch(addUserExpense({ description, amount, category }));
       setDescription("");
       setAmount("");
       setCategory("");
-      console.log(isLoading,error,success)
     }
   };
-  const categories = Object.keys(income);
+  const categories = Object.keys(expenses);
+
   return (
     <div className="overflow-x-hidden">
       <HeadTransactions />
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-6 mr-4 my-2 border-b-2 pb-4 border-gray-100">
-          <div className="col-span-1 w-full mx-2">
-            <p className="p-2 text-md border-2 rounded-lg text-gray-400 w-[90%] mx-2">Today's Date</p>
-          </div>
+        <div className="col-span-1 w-full mx-2">
+          <p className="p-2 text-md  border-2 rounded-lg text-gray-400 w-[90%] mx-2">Today's Date</p>
+          </div>  
           <div className="col-span-2 w-full mx-2">
             <input
               placeholder="Description"
-              value={iname}
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="p-2 border-2 rounded-lg w-[90%] mx-2"
               type="text"
@@ -49,7 +49,7 @@ const InputIncomes = () => {
           <div className="col-span-1 w-full mx-2">
             <input
               placeholder="Amount"
-              value={iamount}
+              value={amount}
               onChange={(e) => setAmount(e.target.value)}
               className="p-2 border-2 rounded-lg w-[90%] mx-2"
               type="text"
@@ -57,7 +57,7 @@ const InputIncomes = () => {
           </div>
           <div className="col-span-1 w-full mx-2">
             <select
-              value={icategory}
+              value={category}
               onChange={(e) => setCategory(e.target.value)}
               className="p-2 border-2 rounded-lg w-[90%] mx-2"
             >
@@ -72,7 +72,7 @@ const InputIncomes = () => {
             </select>
           </div>
           <div className="col-span-1 w-full flex justify-center mx-2">
-            <button
+          <button
               type="submit"
               className="w-1/2 mx-2 p-1 border-2 text-xl font-sans font-bold bg-[blueviolet] text-white rounded-xl shadow-lg"
             >
@@ -81,7 +81,7 @@ const InputIncomes = () => {
           </div>
         </div>
       </form>
-      {incomeData.map((item, index) => (
+      {expense.map((item, index) => (
         <div
           key={index}
           className="grid grid-cols-6 my-8 border-b-2 pb-4 border-gray-100 min-w-full"
@@ -117,4 +117,4 @@ const InputIncomes = () => {
   );
 };
 
-export default InputIncomes;
+export default InputExpense;
