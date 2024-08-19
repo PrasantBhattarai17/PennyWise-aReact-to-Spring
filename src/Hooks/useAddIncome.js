@@ -5,13 +5,13 @@ const useAddIncome = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-
  const token=localStorage.getItem('token');
  console.log(token)
   const addIncome = async (incomeEntry) => {
     setIsLoading(true);
     setError(null);
     setSuccess(false);
+   
 
     try {
       const response = await fetch(add, {

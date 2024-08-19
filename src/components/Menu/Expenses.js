@@ -1,10 +1,10 @@
 import React from 'react'
-import MoneyCard from '../MoneyCard'
 import InputExpense from '../../Helper/InputExpenses'
+import ExpensesCard from '../ExpenseCard'
 const Expenses = () => {
   return (
     <div>
-      <MoneyCard/>
+      <ExpensesCard/>
      <InputExpense/>
     </div>
   )

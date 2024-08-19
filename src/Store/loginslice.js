@@ -13,7 +13,7 @@ const loginSlice=createSlice({
         },
         setAuthToken:(state,action)=>{
             state.authToken=action.payload;
-        }
+        },
     }
 })
 
