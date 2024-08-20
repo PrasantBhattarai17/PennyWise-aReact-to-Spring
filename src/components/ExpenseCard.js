@@ -8,15 +8,15 @@ import {
   } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import React from "react";
-import {useBillsCard, useEntertainmentCard, useGroceryCard, useOthersExpcard} from "../Hooks/useMoneyCard";
+import { useFetchData} from "../Hooks/useMoneyCard";
 
 const ExpensesCard = () => {
 
 const token =localStorage.getItem('token')
-const { Gdata} = useGroceryCard(token);
-const { Bdata} = useBillsCard(token);
-const { EnterData} = useEntertainmentCard(token);
-const { OEData} = useOthersExpcard(token);
+const { data:Gdata} = useFetchData('/expense/groceriescard',token);
+const { data:Bdata} = useFetchData('/expense/billscard',token);
+const { data:EnterData} = useFetchData('/expense/entertaintmentcard',token);
+const { data:OEData} = useFetchData('/expense/otherscard',token);
 
 
   return (

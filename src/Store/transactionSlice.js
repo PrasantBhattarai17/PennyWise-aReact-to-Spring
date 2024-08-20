@@ -8,9 +8,6 @@ const transactionSlice=createSlice({
         toggleLogin:false,
     },
     reducers:{
-    switchView:(state)=>{
-        state.isView=true;
-    },
     ToggleView:(state)=>{
         state.isView=false;
     },

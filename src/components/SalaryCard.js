@@ -7,15 +7,15 @@ import {
   } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
   import React from "react";
-import {useInvestmentCard, useOtherscard, UseRealEstatesCard, useSalaryCard} from "../Hooks/useMoneyCard";
+import { useFetchData } from "../Hooks/useMoneyCard";
 
 const SalaryCard = () => {
 
 const token =localStorage.getItem('token')
- const { sdata} = useSalaryCard(token);
- const { Invdata} = useInvestmentCard(token);
- const { reData} = UseRealEstatesCard(token);
- const { OData} = useOtherscard(token);
+ const { data:sdata}   = useFetchData('/income/salarycard',token);
+ const { data:Invdata} = useFetchData('/income/investmentcard',token);
+ const { data:reData}  = useFetchData('/income/realstatecard',token);
+ const { data:OData}   = useFetchData('/income/otherscard',token);
 
 
 
