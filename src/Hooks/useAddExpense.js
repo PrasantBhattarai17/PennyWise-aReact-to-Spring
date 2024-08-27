@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import { add } from '../utils/constants';
 
-const useAddIncome = () => {
+const useAddExpenses = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
  const token=localStorage.getItem('token');
-  const addIncome = async (incomeEntry) => {
+  const addExpenses = async (incomeEntry) => {
     setIsLoading(true);
     setError(null);
     setSuccess(false);
    
 
     try {
-      const response = await fetch('/income/add', {
+      const response = await fetch('/expenses/add', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +37,7 @@ const useAddIncome = () => {
     }
   };
 
-  return { addIncome, isLoading, error, success };
+  return { addExpenses, isLoading, error, success };
 };
 
-export default useAddIncome;
+export default useAddExpenses;

@@ -15,16 +15,16 @@ export const LoginImage =
 
  export const income = {
   salary: 50000,
-  Investment: 15000,
-  RealEstates: 30000,
-  Others: 8000
+  investment: 15000,
+  realEstates: 30000,
+  others: 8000
 };
 
 export const expenses = {
-  Groceries: 5000,
-  Bills: 3000,
-  Entertainment: 2000,
-  Others: 1500
+  groceries: 5000,
+  bills: 3000,
+  entertainment: 2000,
+  others: 1500
 };
 
 export const PathReg="/register";

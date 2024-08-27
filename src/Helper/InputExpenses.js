@@ -5,26 +5,33 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { addUserExpense } from "../Store/expenseSlice";
 import { expenses } from "../utils/constants";
+import useAddExpenses from "../Hooks/useAddExpense";
 
 const InputExpense = () => {
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const [category, setCategory] = useState("");
+  const [ename, setEname] = useState("");
+  const [eamount, setEAmount] = useState("");
+  const [ecategory, setECategory] = useState("");
  
   const dispatch = useDispatch();
   const expense = useSelector((store) => store.expense.expenses);
 
+  const { addExpenses, isLoading, error, success } = useAddExpenses();
+
+
   const handleSubmit = (e) => {
-    e.preventDefault();
     if (
-      description !== "" &&
-      amount !== "" &&
-      category !== "" 
+      ename !== "" &&
+      eamount !== "" &&
+      ecategory !== "" 
     ) {
-      dispatch(addUserExpense({ description, amount, category }));
-      setDescription("");
-      setAmount("");
-      setCategory("");
+      e.preventDefault();
+      const expenseEntry = { ename, eamount: parseFloat(eamount), ecategory  };
+      addExpenses(expenseEntry)
+      dispatch(addUserExpense({ ename, eamount, ecategory }));
+      setEname("");
+      setEAmount("");
+      setECategory("");
+      console.log(isLoading,error,success)
     }
   };
   const categories = Object.keys(expenses);
@@ -40,8 +47,8 @@ const InputExpense = () => {
           <div className="col-span-2 w-full mx-2">
             <input
               placeholder="Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={ename}
+              onChange={(e) => setEname(e.target.value)}
               className="p-2 border-2 rounded-lg w-[90%] mx-2"
               type="text"
             />
@@ -49,16 +56,16 @@ const InputExpense = () => {
           <div className="col-span-1 w-full mx-2">
             <input
               placeholder="Amount"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
+              value={eamount}
+              onChange={(e) => setEAmount(e.target.value)}
               className="p-2 border-2 rounded-lg w-[90%] mx-2"
               type="text"
             />
           </div>
           <div className="col-span-1 w-full mx-2">
             <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              value={ecategory}
+              onChange={(e) => setECategory(e.target.value)}
               className="p-2 border-2 rounded-lg w-[90%] mx-2"
             >
               <option value="" disabled>

@@ -12,9 +12,9 @@ import {useFetchData} from "../Hooks/useMoneyCard";
 const MoneyCard = () => {
 
 const token =localStorage.getItem('token')
- const { data:incomedata} = useFetchData(' /income/salarycard',token);
- const { data:expensedata} = useFetchData(' /income/salarycard',token);
- const { data:savingsdata} = useFetchData(' /income/salarycard',token);
+ const { data:incomedata} = useFetchData(' /income/incomecard',token);
+ const { data:expensedata} = useFetchData(' /expense/expensecard',token);
+ const { data:savingsdata} = useFetchData(' /savingcard',token);
  const { data:investmentdata} = useFetchData(' /income/investmentcard',token);
  
 
@@ -45,12 +45,12 @@ const token =localStorage.getItem('token')
           Expenses
         </h3>
         <span className="flex mx-5 my-5 space-x-3">
-          <h1 className="text-5xl font-bold font-sans">$928.89</h1>
-          <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>12.2%</p>
+          <h1 className="text-5xl font-bold font-sans">${expensedata?.total}</h1>
+          <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{expensedata?.percentage}%</p>
         </span>
         <span className="flex mx-6 space-x-1">
-          <p className=" text-green-400 bg-gray-100 rounded-md flex ">+$112</p>
-          <p className="font-sans font-semibold text-md text-gray-500">than last month</p>
+          <p className=" text-green-400 bg-gray-100 rounded-md flex  text-sm">{expensedata?.message}</p>
+          <p className="font-sans font-semibold text-md text-gray-500 text-sm">than last month</p>
         </span>
       </div>
       <div className="w-[88%] border-2 shadow-md m-auto h-40 rounded-xl  col-span-3 border-x-2 bg-[#ffffff]">
@@ -58,11 +58,11 @@ const token =localStorage.getItem('token')
           <FontAwesomeIcon className="mx-1" icon={faPiggyBank} /> Savings
         </h3>
         <span className="flex mx-5 my-5 space-x-3">
-          <h1 className="text-5xl font-bold font-sans">$928.89</h1>
-          <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>12.2%</p>
+          <h1 className="text-5xl font-bold font-sans">${savingsdata?.total}</h1>
+          <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{savingsdata?.percentage}%</p>
         </span>
         <span className="flex mx-6 space-x-1">
-          <p className=" text-green-400 bg-gray-100 rounded-md flex ">+$112</p>
+          <p className=" text-green-400 bg-gray-100 rounded-md flex ">{savingsdata?.message}</p>
           <p className="font-sans font-semibold text-md text-gray-500">than last month</p>
         </span>
       </div>
