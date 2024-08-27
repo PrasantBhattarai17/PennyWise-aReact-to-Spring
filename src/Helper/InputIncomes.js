@@ -21,7 +21,7 @@ const InputIncomes = () => {
       const incomeEntry = { iname, iamount: parseFloat(iamount), icategory};
       console.log(incomeEntry)
       addIncome(incomeEntry);
-      dispatch(addUserIncome(incomeEntry));
+      dispatch(addUserIncome({ iname, iamount, icategory }));
       setDescription("");
       setAmount("");
       setCategory("");
