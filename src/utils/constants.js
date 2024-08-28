@@ -1,8 +1,5 @@
 import Logo from "./pw.png";
-
-
 export default Logo;
-
 
 export const LoginImage =
   "https://img.freepik.com/premium-photo/cryptocurrency-bitcoin-purple-background-3d_951116-387.jpg";

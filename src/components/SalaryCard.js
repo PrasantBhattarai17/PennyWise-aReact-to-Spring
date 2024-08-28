@@ -33,7 +33,7 @@ const token =localStorage.getItem('token')
           <h1 className="text-5xl font-bold font-sans">${sdata?.total}</h1>
           <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{sdata?.percentage}%</p>
         </span>
-        <span className="flex mx-6 space-x-1">
+        <span className="flex mx-2 space-x-1 w-full">
           <p className=" text-green-400 text-sm bg-gray-100 rounded-md flex ">{sdata?.message}</p>
           <p className="font-sans font-semibold text-sm text-gray-500">than last month</p>
         </span>
@@ -47,7 +47,7 @@ const token =localStorage.getItem('token')
           <h1 className="text-5xl font-bold font-sans">${Invdata?.total}</h1>
           <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{Invdata?.percentage}%</p>
         </span>
-        <span className="flex mx-6 space-x-1">
+        <span className="flex mx-2 space-x-1 w-full">
           <p className=" text-green-400 bg-gray-100 rounded-md flex text-sm">{Invdata?.message}</p>
           <p className="font-sans font-semibold text-md text-gray-500 text-sm">than last month</p>
         </span>
@@ -60,7 +60,7 @@ const token =localStorage.getItem('token')
           <h1 className="text-5xl font-bold font-sans">${reData?.total}</h1>
           <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{reData?.percentage}%</p>
         </span>
-        <span className="flex mx-6 space-x-1">
+        <span className="flex mx-2 space-x-1 w-full">
           <p className=" text-green-400 bg-gray-100 rounded-md flex text-sm ">{reData?.message}</p>
           <p className="font-sans font-semibold text-md text-gray-500 text-sm">than last month</p>
         </span>
@@ -73,7 +73,7 @@ const token =localStorage.getItem('token')
           <h1 className="text-5xl font-bold font-sans">${OData?.total}</h1>
           <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{OData?.percentage}%</p>
         </span>
-        <span className="flex mx-6 space-x-1">
+        <span className="flex mx-2 space-x-1 w-full">
           <p className=" text-green-400 bg-gray-100 rounded-md flex text-sm">{OData?.message}</p>
           <p className="font-sans font-semibold text-md text-gray-500 text-sm">than last month</p>
         </span>

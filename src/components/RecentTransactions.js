@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import HeadTransactions from "../Helper/headTransactions";
 const RecentTransactions = () => {
-  const financeData =[
-  {
-    date: "2024-08-10",
-    description: "Affiliate Marketing",
-    amount: 500.0,
-    category: "Others",
-    isIncome: true,
-  }];
+  const token =localStorage.getItem('token')
+  const [financeData,setFinancedata]=useState(null);
 
+  const fetchRandom=async()=>{
+    const response =await fetch("/random",{
+      method:'GET',
+      headers:{
+        'Authorization':`Bearer ${token}`
+      }
+    });
+    const json  =await response.json();
+    setFinancedata(json);
+    console.log(financeData);
+  }
+
+  useEffect(()=>{
+    fetchRandom();
+  },[])
   return (
     <div className="bg-white w-[97%] m-auto 100  my-5 rounded-lg shadow-lg overflow-x-hidden  ">
       <span className="flex justify-between">
@@ -20,26 +29,27 @@ const RecentTransactions = () => {
         </h1>
       </span>
       <HeadTransactions/>
-      {financeData.map((item,index) => (
+      {/* {financeData.map((item,index) => (
         <div key={index} className=" grid grid-cols-6  my-8 border-b-2 pb-4 border-gray-100 min-w-full ">
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              {item?.date}
+              {item?.iid?item?.idate:item?.edate}
             </p>
           </div>
           <div className="col-span-2 w-full mx-5">
-            <p className={`text-sm font-sans font-semibold t ${item?.isIncome?"text-green-600":"text-red-600"}`}>
-              {item?.description}
+            <p className={`text-sm font-sans font-semibold t ${item?.iid?"text-green-600":"text-red-600"}`}>
+            {item?.iid?item?.iname:item?.ename}
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">
-            <p className={`text-sm font-sans font-semibold t ${item?.isIncome?"text-green-600":"text-red-600"}`}>
-              ${item?.amount}
+            <p className={`text-sm font-sans font-semibold t ${item?.iid?"text-green-600":"text-red-600"}`}>
+              ${item?.iid?item?.iamount:item?.eamount}
+
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              {item?.category}
+            {item?.iid?item?.icategory:item?.ecategory}
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">
@@ -48,7 +58,7 @@ const RecentTransactions = () => {
             </p>
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 };

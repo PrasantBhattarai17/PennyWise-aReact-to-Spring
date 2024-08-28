@@ -1,22 +1,24 @@
 import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import userIcon from "../utils/user.png"
 
 const NavBar = () => {
   const [focus, setFocus] = useState(false)
+  const [user, setUser] = useState(false)
   const token=localStorage.getItem('token');
   const isFocus = () => {
     setFocus(true);
   };
   const fetchProfile=async()=>{
-    const response = await fetch('/', {
+    const response = await fetch('/user', {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,
       },
     });
     const json=await response.json();
-    return json;
+    setUser(json);
   }
 
 
@@ -59,11 +61,11 @@ const NavBar = () => {
           <div className="w-3/4 flex justify-between cursor-pointer">
             <img
               className="w-16 h-16 m-auto"
-              src="https://avatars.githubusercontent.com/u/122468711?v=4"
+              src={userIcon}
             />
             <span className="m-auto p-4">
-              <h3 className=" font-semibold text-md">Prasant Bhattarai</h3>
-              <h4 className="text-[gray] text-md">@prasantesp17</h4>
+              <h3 className=" font-bold text-lg">{user?.name}</h3>
+              <h4 className="text-[gray] text-md">{user?.username}</h4>
             </span>
           </div>
         </div>

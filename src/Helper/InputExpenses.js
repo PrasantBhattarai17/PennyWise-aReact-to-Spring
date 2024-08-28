@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeadTransactions from "./headTransactions";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +14,23 @@ const InputExpense = () => {
  
   const dispatch = useDispatch();
   const expense = useSelector((store) => store.expense.expenses);
+  const token =localStorage.getItem('token')
+  const [financeData,setFinancedata]=useState([]);
+
+  const fetchRandom=async()=>{
+    const response =await fetch("/expense/monthexpense",{
+      method:'GET',
+      headers:{
+        'Authorization':`Bearer ${token}`
+      }
+    });
+    const json  =await response.json();
+    setFinancedata(json);
+    console.log(financeData);
+  }
+  useEffect(()=>{
+    fetchRandom();
+  },[expense])
 
   const { addExpenses, isLoading, error, success } = useAddExpenses();
 
@@ -88,7 +105,7 @@ const InputExpense = () => {
           </div>
         </div>
       </form>
-      {expense.map((item, index) => (
+      {financeData.map((item, index) => (
         <div
           key={index}
           className="grid grid-cols-6 my-8 border-b-2 pb-4 border-gray-100 min-w-full"
@@ -105,7 +122,7 @@ const InputExpense = () => {
           </div>
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              ${item?.emaount}
+              ${item?.eamount}
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">

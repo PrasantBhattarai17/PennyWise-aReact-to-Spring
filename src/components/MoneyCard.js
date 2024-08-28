@@ -33,7 +33,7 @@ const token =localStorage.getItem('token')
           <h1 className="text-5xl font-bold font-sans">${incomedata?.total}</h1>
           <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{incomedata?.percentage}%</p>
         </span>
-        <span className="flex mx-6 space-x-1">
+        <span className="flex mx-2 space-x-1 w-full">
           <p className=" text-green-400 bg-gray-100 rounded-md flex text-sm ">{incomedata?.message}</p>
           <p className="font-sans font-semibold text-sm text-gray-500">than last month</p>
         </span>
@@ -48,7 +48,7 @@ const token =localStorage.getItem('token')
           <h1 className="text-5xl font-bold font-sans">${expensedata?.total}</h1>
           <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{expensedata?.percentage}%</p>
         </span>
-        <span className="flex mx-6 space-x-1">
+        <span className="flex mx-2 space-x-1 w-full">
           <p className=" text-green-400 bg-gray-100 rounded-md flex  text-sm">{expensedata?.message}</p>
           <p className="font-sans font-semibold text-md text-gray-500 text-sm">than last month</p>
         </span>
@@ -61,7 +61,7 @@ const token =localStorage.getItem('token')
           <h1 className="text-5xl font-bold font-sans">${savingsdata?.total}</h1>
           <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{savingsdata?.percentage}%</p>
         </span>
-        <span className="flex mx-6 space-x-1">
+        <span className="flex mx-2 space-x-1 w-full">
           <p className=" text-green-400 bg-gray-100 rounded-md flex ">{savingsdata?.message}</p>
           <p className="font-sans font-semibold text-md text-gray-500">than last month</p>
         </span>
@@ -74,7 +74,7 @@ const token =localStorage.getItem('token')
           <h1 className="text-5xl font-bold font-sans">${investmentdata?.total}</h1>
           <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{investmentdata?.percentage}%</p>
         </span>
-        <span className="flex mx-6 space-x-1">
+        <span className="flex mx-2 space-x-1 w-full">
           <p className=" text-green-400 bg-gray-100 rounded-md flex text-sm">{investmentdata?.message}</p>
           <p className="font-sans font-semibold text-md text-gray-500 text-sm">than last month</p>
         </span>
