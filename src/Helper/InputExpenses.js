@@ -100,17 +100,17 @@ const InputExpense = () => {
           </div>
           <div className="col-span-2 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              {item?.description}
+              {item?.ename}
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              ${item?.amount}
+              ${item?.emaount}
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              {item?.category}
+              {item?.ecategory}
             </p>
           </div>
           <div className="col-span-1 w-full flex justify-center">

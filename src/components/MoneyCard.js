@@ -31,11 +31,11 @@ const token =localStorage.getItem('token')
         </h3>
         <span className="flex mx-5 my-5 space-x-3">
           <h1 className="text-5xl font-bold font-sans">${incomedata?.total}</h1>
-          <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>12.2%</p>
+          <p className="mt-7 text-green-400 bg-gray-100 rounded-md flex "><FontAwesomeIcon className="mt-1 mr-1" icon={faArrowUp}/>{incomedata?.percentage}%</p>
         </span>
         <span className="flex mx-6 space-x-1">
-          <p className=" text-green-400 bg-gray-100 rounded-md flex ">+$112</p>
-          <p className="font-sans font-semibold text-md text-gray-500">than last month</p>
+          <p className=" text-green-400 bg-gray-100 rounded-md flex text-sm ">{incomedata?.message}</p>
+          <p className="font-sans font-semibold text-sm text-gray-500">than last month</p>
         </span>
 
       </div>

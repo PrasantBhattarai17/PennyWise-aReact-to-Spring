@@ -12,7 +12,7 @@ const useAddExpenses = () => {
    
 
     try {
-      const response = await fetch('/expenses/add', {
+      const response = await fetch('/expense/add', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

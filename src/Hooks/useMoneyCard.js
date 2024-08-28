@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export const useFetchData = (endpoint, token) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const incomeData=useSelector((store)=>store.income.incomes);
+  const expense = useSelector((store) => store.expense.expenses);
+
 
   const fetchData = async () => {
     try {
@@ -29,7 +33,7 @@ export const useFetchData = (endpoint, token) => {
     if (token) {
       fetchData();
     }
-  }, [token]);
+  }, [token,incomeData,expense]);
 
   return { data, loading, error };
 };

@@ -93,17 +93,17 @@ const InputIncomes = () => {
           </div>
           <div className="col-span-2 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              {item?.description}
+              {item?.iname}
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              ${item?.amount}
+              ${item?.imaount}
             </p>
           </div>
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              {item?.category}
+              {item?.icategory}
             </p>
           </div>
           <div className="col-span-1 w-full flex justify-center">

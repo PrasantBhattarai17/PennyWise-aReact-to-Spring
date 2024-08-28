@@ -1,12 +1,29 @@
 import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const NavBar = () => {
-  const [focus, setFocus] = useState(false);
+  const [focus, setFocus] = useState(false)
+  const token=localStorage.getItem('token');
   const isFocus = () => {
     setFocus(true);
   };
+  const fetchProfile=async()=>{
+    const response = await fetch('/', {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+    const json=await response.json();
+    return json;
+  }
+
+
+  useEffect(()=>{
+    fetchProfile();
+  },[])
+
   return (
     <div className="grid grid-cols-10 h-20 border-b-2 shadow-sm ">
       <div className="col-span-2 flex items-center mx-6">

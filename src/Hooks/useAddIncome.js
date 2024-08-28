@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { add } from '../utils/constants';
 
 const useAddIncome = () => {
   const [isLoading, setIsLoading] = useState(false);
