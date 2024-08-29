@@ -37,12 +37,15 @@ const InputExpense = () => {
       headers:{
         'Authorization':`Bearer ${token}`
       }
-    });
+    }  
+  );
+  const data=await response.json();
+  setFinancedata(data);
 
   }
   useEffect(()=>{
     fetchRandom();
-  },[expense,deleteExpense])
+  },[expense])
 
   
 

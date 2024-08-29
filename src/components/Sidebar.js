@@ -30,6 +30,7 @@ const Sidebar = () => {
     }
     setSelectedItem(item);
     if (item !== "logout") {
+      localStorage.removeItem("token"); 
       navigate("/" + item);
     } else {
       navigate("/");
