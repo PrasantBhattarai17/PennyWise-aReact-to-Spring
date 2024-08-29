@@ -35,5 +35,5 @@ export const useFetchData = (endpoint, token) => {
     }
   }, [token,incomeData,expense]);
 
-  return { data, loading, error };
+  return { fetchData,data, loading, error };
 };

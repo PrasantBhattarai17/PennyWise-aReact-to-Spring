@@ -17,6 +17,20 @@ const InputExpense = () => {
   const token =localStorage.getItem('token')
   const [financeData,setFinancedata]=useState([]);
 
+  const deleteExpense = async (id) => {
+    const response = await fetch(`/expense/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data=await response.text();
+    console.log(data);
+    if (response.ok) {
+      setFinancedata(financeData.filter((item) => item.eid !== id));
+    }
+  };
+
   const fetchRandom=async()=>{
     const response =await fetch("/expense/monthexpense",{
       method:'GET',
@@ -24,31 +38,35 @@ const InputExpense = () => {
         'Authorization':`Bearer ${token}`
       }
     });
-    const json  =await response.json();
-    setFinancedata(json);
-    console.log(financeData);
+
   }
   useEffect(()=>{
     fetchRandom();
-  },[expense])
+  },[expense,deleteExpense])
+
+  
+
+const handleDelete=(id)=>{
+  deleteExpense(id);
+};
+
 
   const { addExpenses, isLoading, error, success } = useAddExpenses();
 
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     if (
       ename !== "" &&
       eamount !== "" &&
       ecategory !== "" 
-    ) {
-      e.preventDefault();
+    ){
       const expenseEntry = { ename, eamount: parseFloat(eamount), ecategory  };
       addExpenses(expenseEntry)
       dispatch(addUserExpense({ ename, eamount, ecategory }));
       setEname("");
       setEAmount("");
       setECategory("");
-      console.log(isLoading,error,success)
     }
   };
   const categories = Object.keys(expenses);
@@ -112,7 +130,7 @@ const InputExpense = () => {
         >
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              {item?.date}
+              {item?.edate}
             </p>
           </div>
           <div className="col-span-2 w-full mx-5">
@@ -131,7 +149,7 @@ const InputExpense = () => {
             </p>
           </div>
           <div className="col-span-1 w-full flex justify-center">
-            <p className="text-md font-sans font-semibold text-gray-500 hover:text-[blueviolet] mx-5 cursor-pointer">
+            <p onClick={()=>handleDelete(item?.eid)} className="text-md font-sans font-semibold text-gray-500 hover:text-[blueviolet] mx-5 cursor-pointer">
               <FontAwesomeIcon icon={faTrash} />
             </p>
           </div>

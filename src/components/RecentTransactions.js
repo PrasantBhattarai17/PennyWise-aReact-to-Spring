@@ -15,12 +15,15 @@ const RecentTransactions = () => {
     });
     const json  =await response.json();
     setFinancedata(json);
-    console.log(financeData);
-  }
+ }
 
   useEffect(()=>{
     fetchRandom();
   },[])
+  useEffect(() => {
+    console.log(financeData);
+  }, [financeData]);
+  {if (!financeData) return }
   return (
     <div className="bg-white w-[97%] m-auto 100  my-5 rounded-lg shadow-lg overflow-x-hidden  ">
       <span className="flex justify-between">
@@ -29,7 +32,7 @@ const RecentTransactions = () => {
         </h1>
       </span>
       <HeadTransactions/>
-      {/* {financeData.map((item,index) => (
+      {financeData.map((item,index) => (
         <div key={index} className=" grid grid-cols-6  my-8 border-b-2 pb-4 border-gray-100 min-w-full ">
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
@@ -58,7 +61,7 @@ const RecentTransactions = () => {
             </p>
           </div>
         </div>
-      ))} */}
+      ))}
     </div>
   );
 };

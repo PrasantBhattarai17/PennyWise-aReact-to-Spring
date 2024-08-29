@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeadTransactions from "./headTransactions";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserIncome } from "../Store/IncomeSlice";
@@ -6,36 +6,78 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { income } from "../utils/constants";
 import useAddIncome from "../Hooks/useAddIncome";
+import { useFetchData } from "../Hooks/useMoneyCard";
 
 const InputIncomes = () => {
   const [iname, setDescription] = useState("");
   const [iamount, setAmount] = useState("");
   const [icategory, setCategory] = useState("");
-  const incomeData=useSelector((store)=>store.income.incomes)
+  const incomeData = useSelector((store) => store.income.incomes);
+  const token = localStorage.getItem("token");
+  const [financeData, setFinanceData] = useState([]);
   const dispatch = useDispatch();
-
   const { addIncome, isLoading, error, success } = useAddIncome();
+
+  const fetchRandom = async () => {
+    const response = await fetch("/income/monthbalance", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const json = await response.json();
+    setFinanceData(json);
+  };
+
+  useEffect(() => {
+    fetchRandom();
+  }, [incomeData]); 
+
+  const deleteIncome = async (id) => {
+    const response = await fetch(`/income/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.ok) {
+      setFinanceData(financeData.filter((item) => item.iid !== id)); 
+    }
+  };
+
+  const handleDelete = (id) => {
+    deleteIncome(id);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (iname !== "" && iamount !== "" && icategory !== "" && parseFloat(iamount) > 0) {
-      const incomeEntry = { iname, iamount: parseFloat(iamount), icategory};
-      console.log(incomeEntry)
+    if (
+      iname !== "" &&
+      iamount !== "" &&
+      icategory !== "" &&
+      parseFloat(iamount) > 0
+    ) {
+      const incomeEntry = { iname, iamount: parseFloat(iamount), icategory };
       addIncome(incomeEntry);
       dispatch(addUserIncome({ iname, iamount, icategory }));
       setDescription("");
       setAmount("");
       setCategory("");
-      console.log(isLoading,error,success)
     }
   };
+
   const categories = Object.keys(income);
+
   return (
     <div className="overflow-x-hidden">
       <HeadTransactions />
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-6 mr-4 my-2 border-b-2 pb-4 border-gray-100">
           <div className="col-span-1 w-full mx-2">
-            <p className="p-2 text-md border-2 rounded-lg text-gray-400 w-[90%] mx-2">Today's Date</p>
+            <p className="p-2 text-md border-2 rounded-lg text-gray-400 w-[90%] mx-2">
+              Today's Date
+            </p>
           </div>
           <div className="col-span-2 w-full mx-2">
             <input
@@ -81,14 +123,14 @@ const InputIncomes = () => {
           </div>
         </div>
       </form>
-      {incomeData.map((item, index) => (
+      {financeData.map((item, index) => (
         <div
           key={index}
           className="grid grid-cols-6 my-8 border-b-2 pb-4 border-gray-100 min-w-full"
         >
           <div className="col-span-1 w-full mx-5">
             <p className="text-sm font-sans font-semibold text-gray-500">
-              {item?.date}
+              {item?.idate}
             </p>
           </div>
           <div className="col-span-2 w-full mx-5">
@@ -107,7 +149,10 @@ const InputIncomes = () => {
             </p>
           </div>
           <div className="col-span-1 w-full flex justify-center">
-            <p className="text-md font-sans font-semibold text-gray-500 hover:text-[blueviolet] mx-5 cursor-pointer">
+            <p
+              onClick={() => handleDelete(item?.iid)}
+              className="text-md font-sans font-semibold text-gray-500 hover:text-[blueviolet] mx-5 cursor-pointer"
+            >
               <FontAwesomeIcon icon={faTrash} />
             </p>
           </div>

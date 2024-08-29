@@ -11,14 +11,23 @@ const NavBar = () => {
     setFocus(true);
   };
   const fetchProfile=async()=>{
+    try{
     const response = await fetch('/user', {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`,
       },
     });
-    const json=await response.json();
-    setUser(json);
+  if (!response.ok) {
+      throw new Error('Network response was not ok');
+  }
+  const json=await response.json();
+  console.log(json)
+  setUser(json);
+  } catch (error) {
+  console.error('Error fetching profile:', error);
+}
+   
   }
 
 
