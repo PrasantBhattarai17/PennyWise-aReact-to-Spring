@@ -71,40 +71,44 @@ const InputIncomes = () => {
 
   return (
     <div className="overflow-x-hidden">
-      <HeadTransactions />
-      <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-6 mr-4 my-2 border-b-2 pb-4 border-gray-100">
-          <div className="col-span-1 w-full mx-2">
-            <p className="p-2 text-md border-2 rounded-lg text-gray-400 w-[90%] mx-2">
+   <div className="md:block hidden">
+  <HeadTransactions />
+      </div> 
+          <h1 className="md:hidden text-xl font-bold font-sans text-center m-2 ">Add Earnings</h1>
+           <form onSubmit={handleSubmit}>
+        <div className="md:grid md:grid-cols-6 items-center mr-4 my-2 border-b-2 pb-4 border-gray-100 md:space-y-0 space-y-2">
+          <div className="md:col-span-1 w-full md:mx-2 mx-auto">
+            <p className="p-2 text-sm md:text-md border-2 rounded-lg text-gray-400 w-[90%] mx-auto">
               Today's Date
             </p>
           </div>
-          <div className="col-span-2 w-full mx-2">
+          <div className="md:col-span-2 w-full md:mx-2 mx-6">
             <input
               placeholder="Description"
               value={iname}
               onChange={(e) => setDescription(e.target.value)}
-              className="p-2 border-2 rounded-lg w-[90%] mx-2"
+              className="p-2 border-2 rounded-lg w-[90%] md:mx-2 mx-auto"
               type="text"
             />
           </div>
-          <div className="col-span-1 w-full mx-2">
+          <div className="md:col-span-1 w-full md:mx-2 mx-6">
             <input
               placeholder="Amount"
               value={iamount}
               onChange={(e) => setAmount(e.target.value)}
-              className="p-2 border-2 rounded-lg w-[90%] mx-2"
+              className="p-2 border-2 rounded-lg w-[90%] "
               type="text"
             />
           </div>
-          <div className="col-span-1 w-full mx-2">
+          <div className="md:col-span-2 flex flex-row  md:mx-0 mx-2">
+          <div className=" md:w-full w-[70%] md:mx-2 mx-auto">
             <select
               value={icategory}
               onChange={(e) => setCategory(e.target.value)}
-              className="p-2 border-2 rounded-lg w-[90%] mx-2"
+              className="p-2 border-2 rounded-lg md:w-[90%] w-[80%] md:mx-2 mx-4"
             >
               <option value="" disabled>
-                Select Category
+               Select Category
               </option>
               {categories.map((cat) => (
                 <option key={cat} value={cat}>
@@ -113,37 +117,41 @@ const InputIncomes = () => {
               ))}
             </select>
           </div>
-          <div className="col-span-1 w-full flex justify-center mx-2">
+          <div className=" md:w-full w-[40%] flex justify-center md:mx-2 mx-1">
             <button
               type="submit"
-              className="w-1/2 mx-2 p-1 border-2 text-xl font-sans font-bold bg-[blueviolet] text-white rounded-xl shadow-lg"
+              className="w-2/3 mx-2 p-1 border-2 text-xl font-sans font-bold bg-[blueviolet] text-white rounded-xl shadow-lg"
             >
               Add
             </button>
           </div>
+          </div>
         </div>
       </form>
+      <div className="md:hidden flex">
+  <HeadTransactions />
+      </div>
       {financeData.map((item, index) => (
         <div
           key={index}
-          className="grid grid-cols-6 my-8 border-b-2 pb-4 border-gray-100 min-w-full"
+          className="grid grid-cols-6 md:my-8 my-2 border-b-2 pb-4 border-gray-100 min-w-full"
         >
-          <div className="col-span-1 w-full mx-5">
-            <p className="text-sm font-sans font-semibold text-gray-500">
+          <div className="col-span-1 w-full md:mx-5 md:ml-5 ml-1">
+            <p className="text-[14px] font-sans font-semibold text-gray-500">
               {item?.idate}
             </p>
           </div>
-          <div className="col-span-2 w-full mx-5">
+          <div className="col-span-2 w-full md:mx-5 mx-2">
             <p className="text-sm font-sans font-semibold text-gray-500">
               {item?.iname}
             </p>
           </div>
-          <div className="col-span-1 w-full mx-5">
+          <div className="col-span-1 w-full md:mx-5 mx-1">
             <p className="text-sm font-sans font-semibold text-gray-500">
               ${item?.iamount}
             </p>
           </div>
-          <div className="col-span-1 w-full mx-5">
+          <div className="col-span-1 w-full md:mx-5 mx-1">
             <p className="text-sm font-sans font-semibold text-gray-500">
               {item?.icategory}
             </p>

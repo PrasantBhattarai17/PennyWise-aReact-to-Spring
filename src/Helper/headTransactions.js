@@ -2,7 +2,7 @@ import React from 'react'
 
 const HeadTransactions = () => {
   return (
-<div className=" grid grid-cols-6  my-8 border-b-2 pb-4 border-gray-100">
+<div className="grid grid-cols-6  my-8 border-b-2 pb-4 border-gray-100">
         <div className="col-span-1 w-full mx-5">
           <p className="text-sm font-sans font-semibold text-gray-500">Date</p>
         </div>
@@ -21,7 +21,7 @@ const HeadTransactions = () => {
             Category
           </p>
         </div>
-        <div className="col-span-1 w-full  flex justify-center">
+        <div className="col-span-1 w-full md:m-0 mx-2 flex justify-center">
           <p className="text-sm font-sans font-semibold text-gray-500">
             Action
           </p>

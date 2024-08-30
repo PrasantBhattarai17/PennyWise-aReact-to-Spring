@@ -76,13 +76,16 @@ const handleDelete=(id)=>{
 
   return (
     <div className="overflow-x-hidden">
-      <HeadTransactions />
+    <div className="md:block hidden">
+     <HeadTransactions />
+      </div> 
+          <h1 className="md:hidden text-xl font-bold font-sans text-center m-4 ">Add Expenses</h1>
       <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-6 mr-4 my-2 border-b-2 pb-4 border-gray-100">
-        <div className="col-span-1 w-full mx-2">
+        <div className="md:grid md:grid-cols-6 flex flex-col  md:mx-0 mx-6 md:gap-0 gap-2  mr-4 my-2 border-b-2 pb-4 border-gray-100">
+        <div className="md:col-span-1 w-full mx-2">
           <p className="p-2 text-md  border-2 rounded-lg text-gray-400 w-[90%] mx-2">Today's Date</p>
           </div>  
-          <div className="col-span-2 w-full mx-2">
+          <div className="md:col-span-2 w-full mx-2">
             <input
               placeholder="Description"
               value={ename}
@@ -91,7 +94,7 @@ const handleDelete=(id)=>{
               type="text"
             />
           </div>
-          <div className="col-span-1 w-full mx-2">
+          <div className="md:col-span-1 w-full mx-2">
             <input
               placeholder="Amount"
               value={eamount}
@@ -100,7 +103,8 @@ const handleDelete=(id)=>{
               type="text"
             />
           </div>
-          <div className="col-span-1 w-full mx-2">
+          <div className="md:col-span-2 flex ">
+          <div className=" w-[60%] mx-2">
             <select
               value={ecategory}
               onChange={(e) => setECategory(e.target.value)}
@@ -116,22 +120,26 @@ const handleDelete=(id)=>{
               ))}
             </select>
           </div>
-          <div className="col-span-1 w-full flex justify-center mx-2">
+          <div className=" w-[40%] flex justify-center mx-2">
           <button
               type="submit"
-              className="w-1/2 mx-2 p-1 border-2 text-xl font-sans font-bold bg-[blueviolet] text-white rounded-xl shadow-lg"
+              className="w-2/3 mx-2 p-1 border-2 text-xl font-sans font-bold bg-[blueviolet] text-white rounded-xl shadow-lg"
             >
               Add
             </button>
           </div>
+          </div>
         </div>
       </form>
+      <div className="md:hidden flex">
+  <HeadTransactions />
+      </div>
       {financeData.map((item, index) => (
         <div
           key={index}
-          className="grid grid-cols-6 my-8 border-b-2 pb-4 border-gray-100 min-w-full"
+          className="grid grid-cols-6 md:my-8  border-b-2 pb-4 border-gray-100 min-w-full"
         >
-          <div className="col-span-1 w-full mx-5">
+          <div className="col-span-1 w-full md:mx-5 mx-2">
             <p className="text-sm font-sans font-semibold text-gray-500">
               {item?.edate}
             </p>
