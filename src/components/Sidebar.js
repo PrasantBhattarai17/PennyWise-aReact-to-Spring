@@ -30,9 +30,15 @@ const Sidebar = () => {
     }
     setSelectedItem(item);
     if (item !== "logout") {
-      localStorage.removeItem("token"); 
       navigate("/" + item);
-    } else {
+
+    } 
+    if (item === "logout") {
+      localStorage.removeItem("token");
+      localStorage.removeItem("lastVisitedPage");
+      navigate("/login", { replace: true });
+    } 
+    else {
       navigate("/");
     }
   };

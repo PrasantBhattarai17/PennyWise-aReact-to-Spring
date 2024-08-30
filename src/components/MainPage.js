@@ -13,9 +13,12 @@ import Help from "./general/Help";
 import LoginPage from "./login/LoginPage";
 import OTPPage from "./login/OTPPage";
 import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute"
+import usePageTracker from "./LastVisitedpage";
 
 
 const MainPage = () => {
+  usePageTracker();
   return (
       <div className="grid grid-cols-12">
         <div className="col-span-2 bg-[white]">
@@ -34,11 +37,16 @@ const MainPage = () => {
 export const appRouter = createBrowserRouter([
   {
     path: "/login",
-    element:<LoginPage />,
+    element:
+    <PublicRoute>
+      <LoginPage />
+      </PublicRoute>
   },
   {
     path: "/",
-    element: <LoginPage />,
+    element: <PublicRoute>
+    <LoginPage />,
+    </PublicRoute>
   },
   {
     path: "/otppage",

@@ -21,7 +21,6 @@ const LoginForm = () => {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -44,8 +43,11 @@ const LoginForm = () => {
 
       const data = await response.text(); 
       const token = data;
-    localStorage.setItem('token', token);
-      navigate('/overview');
+      localStorage.setItem('token', token);
+
+      // Redirect to the last visited page or to overview
+      const lastVisitedPage = localStorage.getItem('lastVisitedPage') || '/overview';
+      navigate(lastVisitedPage, { replace: true });
     } catch (err) {
       setLoading(false);
       if (err.name === 'ValidationError') {
