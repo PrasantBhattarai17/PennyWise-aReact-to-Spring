@@ -8,13 +8,14 @@ import {
   faGear,
   faMoneyBillTransfer,
   faMoneyCheckDollar,
+  faMultiply,
   faPiggyBank,
   faQuestion,
   faSignOut,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { ToggleView } from "../Store/transactionSlice";
+import { ToggleMenu, ToggleView } from "../Store/transactionSlice";
 
 const Sidebar = () => {
   const view = useSelector((store) => store.view.isView);
@@ -33,11 +34,6 @@ const Sidebar = () => {
       navigate("/" + item);
 
     } 
-    if (item === "logout") {
-      localStorage.removeItem("token");
-      localStorage.removeItem("lastVisitedPage");
-      navigate("/login", { replace: true });
-    } 
     else {
       navigate("/");
     }
@@ -55,21 +51,29 @@ const Sidebar = () => {
       ? "cursor-pointer bg-[blueviolet] rounded-md text-white"
       : "OverallHover";
   };
+  const hanldeLog=()=>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("lastVisitedPage");
+    navigate("/login", { replace: true });
+  };
 
   return (
-    <div className="flex flex-col space-y-14 shadow-md h-[700px] top-0 left-0 fixed w-[16.66%]">
+    <div className="md:flex md:flex-col  bg-white md:z-0 z-10  space-y-14 shadow-md  md:h-[700px] top-0 left-0 fixed  md:w-[16.66%]">
       <div>
-        <div className="flex h-20 mb-6">
+        <div className="md:flex hidden h-20 mb-6">
           <img
-            className="h-full w-full cursor-pointer"
+            className="h-full w-full  cursor-pointer"
             src={Logo}
             alt="Logo"
           />
         </div>
-        <div>
+        <div >
+          <span className="flex items-center justify-between mx-5">
           <h3 className="font-merriweather text-lg font-bold my-1 mx-2 p-1">
             Menu
           </h3>
+          <FontAwesomeIcon onClick={()=>dispatch(ToggleMenu())} className="md:hidden  h-8 w-8" icon={faMultiply}/>
+          </span>
           <ul>
             <li
               onClick={() => handleClick("overview")}
@@ -153,7 +157,7 @@ const Sidebar = () => {
       </div>
       <div>
         <h3
-          onClick={() => handleClick("logout")}
+          onClick={() =>hanldeLog()}
           className={`font-semibold text-lg font-merriweather my-4 mx-4 p-1 ${getClassForItem(
             "logout"
           )}`}

@@ -3,11 +3,11 @@ import Chart from "./chart"
 import DataChart from "./dataChart"
 const ChartContainer = () => {
   return (
-    <div className='grid grid-cols-12'>
-        <div className='col-span-7'>
+    <div className='flex flex-col  md:grid md:grid-cols-12'>
+        <div className='md:col-span-7  w-[100%]'>
         <Chart/>
         </div>
-        <div className='col-span-5'>
+        <div className='md:col-span-5 flex justify-center'>
         <DataChart/>
         </div>
     </div>

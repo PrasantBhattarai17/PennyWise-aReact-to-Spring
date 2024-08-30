@@ -15,23 +15,26 @@ import OTPPage from "./login/OTPPage";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute"
 import usePageTracker from "./LastVisitedpage";
+import { useSelector } from "react-redux";
 
 
 const MainPage = () => {
   usePageTracker();
+  const isMenu=useSelector((store)=>store.view.toggleMenu);
   return (
-      <div className="grid grid-cols-12">
-        <div className="col-span-2 bg-[white]">
-          <Routes>
-            <Route path="/:id" element={<Sidebar />} />
-          </Routes>
-        </div>
-        <div className="col-span-10">
-          <NavBar />
-          <Outlet />
-        </div>
+    <div className="grid grid-cols-12">
+      <div className={` md:block md:col-span-2 md:bg-[white] ${isMenu?'block':'hidden'}`}>
+        <Routes>
+          <Route path="/:id" element={<Sidebar />} />
+        </Routes>
       </div>
+      <div className="col-span-12 md:col-span-10 w-full">
+        <NavBar />
+        <Outlet />
+      </div>
+    </div>
   );
+  
 };
 
 export const appRouter = createBrowserRouter([

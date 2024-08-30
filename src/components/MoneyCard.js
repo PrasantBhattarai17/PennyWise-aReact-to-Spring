@@ -20,12 +20,12 @@ const token =localStorage.getItem('token')
 
 
   return (
-    <div className="h-[250px] bg-gray-100">
+    <div className="md:h-[250px] h-[830px] bg-gray-100">
     <div>
       <h3 className="font-sans text-2xl font-semibold py-5 px-10">Overview</h3>
     </div>
-    <div className="grid grid-cols-12">
-      <div className="w-[88%] border-2 shadow-md m-auto h-40 rounded-xl  col-span-3 border-x-2 bg-[#ffffff]">
+    <div className="md:grid md:grid-cols-12 flex flex-col justify-center md:gap-0 gap-4 ">
+      <div className="md:w-[88%] w-[75%] border-2 shadow-md m-auto h-40 rounded-xl  col-span-3 border-x-2 bg-[#ffffff]">
         <h3 className="font-sans text-md my-2 mx-4 text-gray-500 font-semibold">
           <FontAwesomeIcon className="mx-1" icon={faDollar} /> Income
         </h3>
@@ -39,7 +39,7 @@ const token =localStorage.getItem('token')
         </span>
 
       </div>
-      <div className="w-[88%] border-2 shadow-md m-auto h-40 rounded-xl col-span-3 border-x-2 bg-[#ffffff]">
+      <div className="md:w-[88%] w-[75%] border-2 shadow-md m-auto h-40 rounded-xl col-span-3 border-x-2 bg-[#ffffff]">
         <h3 className="font-sans text-md my-2 mx-4 text-gray-500 font-semibold">
           <FontAwesomeIcon className="mx-1" icon={faMoneyCheckDollar} />{" "}
           Expenses
@@ -53,7 +53,7 @@ const token =localStorage.getItem('token')
           <p className="font-sans font-semibold text-md text-gray-500 text-sm">than last month</p>
         </span>
       </div>
-      <div className="w-[88%] border-2 shadow-md m-auto h-40 rounded-xl  col-span-3 border-x-2 bg-[#ffffff]">
+      <div className="md:w-[88%] w-[75%] border-2 shadow-md m-auto h-40 rounded-xl  col-span-3 border-x-2 bg-[#ffffff]">
         <h3 className="font-sans text-md my-2 mx-4 text-gray-500 font-semibold">
           <FontAwesomeIcon className="mx-1" icon={faPiggyBank} /> Savings
         </h3>
@@ -66,7 +66,7 @@ const token =localStorage.getItem('token')
           <p className="font-sans font-semibold text-md text-gray-500">than last month</p>
         </span>
       </div>
-      <div className="w-[88%] border-2 shadow-md m-auto h-40 rounded-xl   col-span-3 border-x-2 bg-[#ffffff]">
+      <div className="md:w-[88%] w-[75%] border-2 shadow-md m-auto h-40 rounded-xl   col-span-3 border-x-2 bg-[#ffffff]">
         <h3 className="font-sans text-md my-2 mx-4 text-gray-500 font-semibold">
           <FontAwesomeIcon className="mx-1" icon={faLandmark} /> Investment
         </h3>
@@ -80,6 +80,8 @@ const token =localStorage.getItem('token')
         </span>
       </div>
     </div>
+    <h3 className=" md:hidden font-sans text-2xl font-semibold py-5 mb-3 px-10">Analysis</h3>
+
   </div>
   )
 }

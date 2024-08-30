@@ -6,6 +6,7 @@ const transactionSlice=createSlice({
     initialState:{
         isView:false,
         toggleLogin:false,
+        toggleMenu:false,
     },
     reducers:{
     ToggleView:(state)=>{
@@ -14,7 +15,10 @@ const transactionSlice=createSlice({
     ToggleLogin:(state)=>{
         state.toggleLogin=!state.toggleLogin;
     },
+    ToggleMenu:(state)=>{
+        state.toggleMenu=!state.toggleMenu
+    }
     }
 });
-export const {switchView,ToggleView,ToggleLogin} =transactionSlice.actions;
+export const {switchView,ToggleView,ToggleLogin,ToggleMenu} =transactionSlice.actions;
 export default transactionSlice.reducer;
