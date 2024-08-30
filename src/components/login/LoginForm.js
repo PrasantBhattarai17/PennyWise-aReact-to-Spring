@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import BrandLogo from './BrandLogo';
 import { useNavigate } from 'react-router';
 import { loginSchema } from '../../Helper/UserValidation';
+import { useSelector } from 'react-redux';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ const LoginForm = () => {
       <div className="flex flex-col justify-center items-center bg-gray-100 rounded-md h-[600px]">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center justify-center w-2/3 h-[550px] gap-2 rounded-xl shadow-xl border-2"
+          className="flex flex-col items-center justify-center w-2/3 h-[550px] gap-2 rounded-xl md:shadow-xlmd:border-2"
         >
           <h1 className="mb-5 font-sans font-semibold text-2xl">
             Welcome Back! Login to your account
