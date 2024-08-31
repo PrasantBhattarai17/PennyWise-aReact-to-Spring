@@ -1,15 +1,16 @@
-import { faArrowCircleUp, faRepeat } from "@fortawesome/free-solid-svg-icons";
+import { faRepeat } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { income, expenses } from "../../utils/constants";
-
+import DataForSwitch from "../../utils/DataFoSwitch";
 const DataChart = () => {
   const [isData, setIsData] = useState(true);
+  const {income,expense}=DataForSwitch();
   const [data, setData] = useState(income); 
+  console.log(income,expense)
 
   const handleClick = () => {
     setIsData(!isData);
-    setData(isData ? expenses : income); 
+    setData(isData ? expense : income); 
   };
 
   return (
@@ -19,7 +20,7 @@ const DataChart = () => {
       </h1>
       <hr className="border-2 border-[blueviolet]" />
       {Object.entries(data).map(([key, value]) => (
-        <span
+                <span
           key={key}
           className="p-2 flex justify-between space-y-1 border-2 w-[93%] m-auto shadow-md rounded-lg"
         >

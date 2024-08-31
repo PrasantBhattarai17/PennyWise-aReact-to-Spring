@@ -7,6 +7,8 @@ export const useFetchData = (endpoint, token) => {
   const [error, setError] = useState(null);
   const incomeData=useSelector((store)=>store.income.incomes);
   const expense = useSelector((store) => store.expense.expenses);
+  const toggleExpense = useSelector((store) => store.view.toggleExpense);
+  const toggleIncome = useSelector((store) => store.view.toggleIncome);
 
 
   const fetchData = async () => {
@@ -33,7 +35,7 @@ export const useFetchData = (endpoint, token) => {
     if (token) {
       fetchData();
     }
-  }, [token,incomeData,expense]);
+  }, [endpoint,token,incomeData,expense,toggleExpense,toggleIncome]);
 
   return { fetchData,data, loading, error };
 };

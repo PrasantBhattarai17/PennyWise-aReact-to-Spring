@@ -6,6 +6,8 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { addUserExpense } from "../Store/expenseSlice";
 import { expenses } from "../utils/constants";
 import useAddExpenses from "../Hooks/useAddExpense";
+import { ToggleExpense } from "../Store/transactionSlice";
+import { useFetchData } from "../Hooks/useMoneyCard";
 
 const InputExpense = () => {
   const [ename, setEname] = useState("");
@@ -17,6 +19,11 @@ const InputExpense = () => {
   const token =localStorage.getItem('token')
   const [financeData,setFinancedata]=useState([]);
 
+  const { fetchData:fetchGrocery} = useFetchData('/expense/groceriescard',token);
+  const { fetchData:fetchBills} = useFetchData('/expense/billscard',token);
+  const { fetchData:fetchEnter} = useFetchData('/expense/entertaintmentcard',token);
+  const { fetchData:fetchOther} = useFetchData('/expense/otherscard',token);
+
   const deleteExpense = async (id) => {
     const response = await fetch(`/expense/delete/${id}`, {
       method: "DELETE",
@@ -25,7 +32,6 @@ const InputExpense = () => {
       },
     });
     const data=await response.text();
-    console.log(data);
     if (response.ok) {
       setFinancedata(financeData.filter((item) => item.eid !== id));
     }
@@ -43,14 +49,16 @@ const InputExpense = () => {
   setFinancedata(data);
 
   }
-  useEffect(()=>{
-    fetchRandom();
-  },[expense])
-
+ 
   
 
 const handleDelete=(id)=>{
   deleteExpense(id);
+  dispatch(ToggleExpense());
+  fetchGrocery();
+  fetchBills();
+  fetchEnter();
+  fetchOther();
 };
 
 
@@ -67,11 +75,21 @@ const handleDelete=(id)=>{
       const expenseEntry = { ename, eamount: parseFloat(eamount), ecategory  };
       addExpenses(expenseEntry)
       dispatch(addUserExpense({ ename, eamount, ecategory }));
+      fetchRandom();
+      fetchGrocery();
+      fetchBills();
+      fetchEnter();
+      fetchOther();
+      dispatch(ToggleExpense());
       setEname("");
       setEAmount("");
       setECategory("");
     }
   };
+  useEffect(()=>{
+    fetchRandom();
+  },[expense])
+
   const categories = Object.keys(expenses);
 
   return (

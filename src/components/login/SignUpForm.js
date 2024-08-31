@@ -61,7 +61,6 @@ const SignUpForm = () => {
       }
 
       const data = await response.text();
-      console.log("API Response:", data);
       dispatch(addUser(formData.username));
 
       // Navigate to the OTP page if registration is successful
@@ -93,14 +92,14 @@ const SignUpForm = () => {
           onSubmit={handleSubmit}
           className="flex flex-col items-center justify-center w-2/3 h-[550px] gap-2 rounded-xl md:shadow-xl border-0 md:border-2"
         >
-          <h1 className="md:mr-24 mb-5 font-sans font-semibold text-2xl">
+          <h1 className="md:mr-24 mb-5 font-sans font-semibold md:text-2xl text-xl text-center">
             Create a New account
           </h1>
           <input
             type="text"
             name="username"
             placeholder="Enter Username"
-            className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
+            className="border-2 m-2 p-3 md:w-2/3 w-full rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
             onChange={handleChange}
             value={formData.username}
           />
@@ -109,7 +108,7 @@ const SignUpForm = () => {
             type="email"
             name="email"
             placeholder="Enter Email"
-            className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
+            className="border-2 m-2 p-3 md:w-2/3 w-full rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
             onChange={handleChange}
             value={formData.email}
           />
@@ -118,16 +117,16 @@ const SignUpForm = () => {
             type="password"
             name="password"
             placeholder="Enter Password"
-            className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
+            className="border-2 m-2 p-3 md:w-2/3 w-full rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
             onChange={handleChange}
             value={formData.password}
           />
-          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
+          {errors.password && <p className="text-red-500 md:text-sm text-[12px]">{errors.password}</p>}
           <input
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
-            className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
+            className="border-2 m-2 p-3 md:w-2/3 w-full rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
             onChange={handleChange}
             value={formData.confirmPassword}
           />

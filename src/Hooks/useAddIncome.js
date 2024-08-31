@@ -23,7 +23,6 @@ const useAddIncome = () => {
 
       if (response.ok) {
         const data = await response.text();
-        console.log(data);
         setSuccess(true);
       } else {
         const errorData = await response.text();

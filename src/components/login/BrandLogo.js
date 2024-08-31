@@ -3,8 +3,8 @@ import Logo from '../../utils/constants'
 
 const BrandLogo = () => {
   return (
-    <div className=''> 
-      <img className='h-56 w-56 pb-28' src={Logo}/>
+    <div className='md:block flex  justify-center'> 
+      <img className='h-56 w-56 md:pb-28 pb-20' src={Logo}/>
     </div>
   )
 }

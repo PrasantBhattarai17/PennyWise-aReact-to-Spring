@@ -23,7 +23,6 @@ const OTPPage = () => {
 
             if (response.ok) {
                 const data = await response.text();
-                console.log('OTP saved successfully:', data);
                 dispatch(ToggleLogin());
                 navigate('/login');
             } else {
@@ -46,15 +45,15 @@ const OTPPage = () => {
     };
 
     return (
-        <div className="grid grid-cols-12">
-            <div className="col-span-6">
+        <div className="md:grid md:grid-cols-12">
+            <div className="md:col-span-6">
                 <BrandLogo />
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center  h-[400px] md:pb-0 pb-10">
                     <form
                         onSubmit={handleSubmit}
-                        className="flex flex-col items-center border-2 w-2/3 gap-4 py-5 shadow-lg rounded-xl"
+                        className="flex flex-col items-center border-2 md:w-2/3 w-[90%] gap-4 py-5 shadow-lg rounded-xl"
                     >
-                        <h1 className="m-5 text-xl font-sans font-semibold">
+                        <h1 className="md:m-5 m-3 text-xl font-sans font-semibold">
                             Enter the OTP Number to Register your account!
                         </h1>
                         <input
@@ -76,7 +75,7 @@ const OTPPage = () => {
                     </form>
                 </div>
             </div>
-            <div className="col-span-6">
+            <div className="md:col-span-6 md:block hidden">
                 <LoginPoster />
             </div>
         </div>

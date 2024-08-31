@@ -7,6 +7,8 @@ const transactionSlice=createSlice({
         isView:false,
         toggleLogin:false,
         toggleMenu:false,
+        toggleIncome:false,
+        toggleExpense:false,
     },
     reducers:{
     ToggleView:(state)=>{
@@ -17,8 +19,15 @@ const transactionSlice=createSlice({
     },
     ToggleMenu:(state)=>{
         state.toggleMenu=!state.toggleMenu
+    },
+    ToggleIncome:(state)=>{
+        state.toggleIncome=!state.toggleIncome;
     }
+    ,
+    ToggleExpense:(state)=>{
+        state.toggleExpense=!state.toggleExpense;
     }
+}
 });
-export const {switchView,ToggleView,ToggleLogin,ToggleMenu} =transactionSlice.actions;
+export const {switchView,ToggleView,ToggleLogin,ToggleMenu,ToggleIncome,ToggleExpense} =transactionSlice.actions;
 export default transactionSlice.reducer;

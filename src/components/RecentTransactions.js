@@ -21,9 +21,12 @@ const RecentTransactions = () => {
     fetchRandom();
   },[])
   useEffect(() => {
-    console.log(financeData);
   }, [financeData]);
-  {if (!financeData) return }
+ 
+  if(!financeData)
+    return
+
+
   return (
     <div className="bg-white w-[97%] m-auto 100  my-5 rounded-lg shadow-lg overflow-x-hidden  ">
       <span className="flex justify-between">

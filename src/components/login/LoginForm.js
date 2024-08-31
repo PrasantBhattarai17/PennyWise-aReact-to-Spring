@@ -21,14 +21,16 @@ const LoginForm = () => {
       [name]: value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setApiError('');
-
+  
     try {
+      // Validate form data
       await loginSchema.validate(formData, { abortEarly: false });
+  
+      // Make API request
       const response = await fetch('/login', {
         method: 'POST',
         headers: {
@@ -36,32 +38,41 @@ const LoginForm = () => {
         },
         body: JSON.stringify(formData),
       });
-
+  
+      // Check for HTTP errors
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(`HTTP error! Status: ${response.status}. Response: ${errorText}`);
       }
-
+  
+      // Get the token and store it
       const data = await response.text(); 
       const token = data;
       localStorage.setItem('token', token);
-
+  
       // Redirect to the last visited page or to overview
       const lastVisitedPage = localStorage.getItem('lastVisitedPage') || '/overview';
       navigate(lastVisitedPage, { replace: true });
+  
     } catch (err) {
       setLoading(false);
+  
       if (err.name === 'ValidationError') {
+        // Handle validation errors
         const validationErrors = {};
         err.inner.forEach((error) => {
           validationErrors[error.path] = error.message;
         });
         setErrors(validationErrors);
       } else {
-        setApiError(err.message);
+        // Handle API errors
+        setApiError("Invalid Username or Password");
       }
+    } finally {
+      setLoading(false); // Ensure loading state is reset
     }
   };
+  
 
   return (
     <>
@@ -71,16 +82,16 @@ const LoginForm = () => {
       <div className="flex flex-col justify-center items-center bg-gray-100 rounded-md h-[600px]">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center justify-center w-2/3 h-[550px] gap-2 rounded-xl md:shadow-xlmd:border-2"
+          className="flex flex-col items-center justify-center w-2/3 h-[550px] gap-2 rounded-xl md:shadow-xl md:border-2"
         >
-          <h1 className="mb-5 font-sans font-semibold text-2xl">
+          <h1 className="mb-5 font-sans font-semibold md:text-2xl text-xl">
             Welcome Back! Login to your account
           </h1>
           <input
             type="text"
             name="username"
             placeholder="Enter Username"
-            className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
+            className="border-2 m-2 p-3 md:w-2/3 w-full rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
             onChange={handleChange}
             value={formData.username}
           />
@@ -89,7 +100,7 @@ const LoginForm = () => {
             placeholder="Enter Password"
             type="password"
             name="password"
-            className="border-2 m-2 p-3 w-2/3 rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
+            className="border-2 m-2 p-3 md:w-2/3 w-full rounded-md shadow-sm focus:border-[blueviolet] focus:outline-none"
             onChange={handleChange}
             value={formData.password}
           />

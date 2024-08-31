@@ -10,7 +10,7 @@ const LoginPage = () => {
   const switchLog = useSelector((store) => store.view.toggleLogin);
   return (
     <div className="md:grid md:grid-cols-12 ">
-      <div className="md:col-span-6 flex flex-col bg-gray-100 ">
+      <div className="md:col-span-6 flex flex-col bg-gray-100 md:max-h-screen ">
         {switchLog ? <LoginForm /> : <SignUpForm />}
         <div className="md:hidden">
           {switchLog ? (
@@ -32,7 +32,7 @@ const LoginPage = () => {
               </h1>
               <h1
                 onClick={() => dispatch(ToggleLogin())}
-                className=" text-center pb-10 text-xl font-semibold text-gray-500 hover:underline cursor-pointer"
+                className=" text-center pb-16 text-xl font-semibold text-gray-500 hover:underline cursor-pointer"
               >
                 Login
               </h1>
@@ -40,7 +40,7 @@ const LoginPage = () => {
           )}
         </div>
       </div>
-      <div className="md:col-span-6 md:block hidden">
+      <div className="md:col-span-6 md:block hidden md:max-h-screen">
         <LoginPoster />
       </div>
     </div>

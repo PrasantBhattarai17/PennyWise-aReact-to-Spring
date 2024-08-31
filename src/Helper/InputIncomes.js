@@ -7,6 +7,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { income } from "../utils/constants";
 import useAddIncome from "../Hooks/useAddIncome";
 import { useFetchData } from "../Hooks/useMoneyCard";
+import {  ToggleIncome } from "../Store/transactionSlice";
 
 const InputIncomes = () => {
   const [iname, setDescription] = useState("");
@@ -17,6 +18,10 @@ const InputIncomes = () => {
   const [financeData, setFinanceData] = useState([]);
   const dispatch = useDispatch();
   const { addIncome, isLoading, error, success } = useAddIncome();
+  const {fetchData:fetchSalary}=useFetchData("/income/salarycard",token);
+  const {fetchData:fetchInvest}=useFetchData("/income/investmentcard",token);
+  const {fetchData:fetchReal  }=useFetchData("/income/realstatecard",token);
+  const {fetchData:fetchOthers}=useFetchData("/income/otherscard",token);
 
   const fetchRandom = async () => {
     const response = await fetch("/income/monthbalance", {
@@ -28,10 +33,7 @@ const InputIncomes = () => {
     const json = await response.json();
     setFinanceData(json);
   };
-
-  useEffect(() => {
-    fetchRandom();
-  }, [incomeData]); 
+ 
 
   const deleteIncome = async (id) => {
     const response = await fetch(`/income/delete/${id}`, {
@@ -48,6 +50,11 @@ const InputIncomes = () => {
 
   const handleDelete = (id) => {
     deleteIncome(id);
+    dispatch(ToggleIncome());
+    fetchSalary(); 
+    fetchInvest();
+    fetchReal();
+    fetchOthers();
   };
 
   const handleSubmit = (e) => {
@@ -59,13 +66,22 @@ const InputIncomes = () => {
       parseFloat(iamount) > 0
     ) {
       const incomeEntry = { iname, iamount: parseFloat(iamount), icategory };
-      addIncome(incomeEntry);
       dispatch(addUserIncome({ iname, iamount, icategory }));
+      addIncome(incomeEntry);
+      fetchRandom();
+     fetchSalary(); 
+     fetchInvest();
+     fetchReal();
+     fetchOthers();
       setDescription("");
       setAmount("");
       setCategory("");
     }
   };
+
+  useEffect(() => {
+    fetchRandom();
+  }, [incomeData]);
 
   const categories = Object.keys(income);
 

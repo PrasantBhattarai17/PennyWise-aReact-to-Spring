@@ -26,7 +26,6 @@ const NavBar = () => {
       throw new Error('Network response was not ok');
   }
   const json=await response.json();
-  console.log(json)
   setUser(json);
   } catch (error) {
   console.error('Error fetching profile:', error);
